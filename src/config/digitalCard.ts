@@ -5,7 +5,7 @@ export const digitalCard = {
   company: "Axira Group – Advisory & Property Services",
   whatsappE164: "+447735701311",
   email: "monge.eric@gmail.com",
-  website: "https://axira-group-demo.vercel.app",
+  website: "https://axira-group.vercel.app/en",
   location: "Dubai, UAE",
   message: "Hi Erick, I found your contact via your business card.",
 } as const;

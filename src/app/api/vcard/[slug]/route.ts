@@ -9,18 +9,20 @@ export function GET(
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
+  const whatsappNumber = digitalCard.whatsappE164.replace(/\s+/g, "");
+
   const vcard = [
     "BEGIN:VCARD",
     "VERSION:3.0",
-    "FN:Erick Monge Gonzalez",
-    "ORG:Axira Group – Advisory & Property Services",
-    "TITLE:Business Consultant & Real Estate",
-    "TEL;TYPE=CELL:+447735701311",
-    "EMAIL;TYPE=INTERNET:erick.monge@axiragroup.ae",
-    "URL:https://axira-group-demo.vercel.app",
+    `FN:${digitalCard.fullName}`,
+    `ORG:${digitalCard.company}`,
+    `TITLE:${digitalCard.title}`,
+    `TEL;TYPE=CELL:${whatsappNumber}`,
+    `EMAIL;TYPE=INTERNET:${digitalCard.email}`,
+    `URL:${digitalCard.website}`,
     "NOTE:Digital business card",
     "END:VCARD",
-  ].join("\n");
+  ].join("\r\n");
 
   return new NextResponse(vcard, {
     status: 200,

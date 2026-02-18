@@ -53,8 +53,9 @@
   },
   "digitalCard": {
     "scanToOpen": "Escaneie para abrir este cartão",
+    "saveInfoTitle": "Este contato será salvo no seu telefone:",
     "actions": {
-      "downloadContact": "Baixar Contato",
+      "downloadContact": "Salvar contato",
       "whatsapp": "WhatsApp",
       "email": "E-mail",
       "website": "Website"
