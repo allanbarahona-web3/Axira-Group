@@ -1,0 +1,21 @@
+{
+  "name": "axira-group-sanity-schema",
+  "version": "1.0.0",
+  "description": "Sanity CMS schema for Axira Group Real Estate properties",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "info": "echo 'This is a schema-only package. Copy these files to your Sanity Studio project.'"
+  },
+  "keywords": [
+    "sanity",
+    "schema",
+    "real-estate"
+  ],
+  "peerDependencies": {
+    "sanity": "^3.0.0"
+  },
+  "devDependencies": {
+    "sanity": "^3.62.2"
+  }
+}

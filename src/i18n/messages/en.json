@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "realEstate": "Real Estate",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "headline": "Premier Advisory & Property Services",
+    "subheadline": "Navigate international business formation, residency solutions, and exclusive real estate opportunities with expert guidance.",
+    "cta": "Get Started",
+    "ctaSecondary": "Contact Us"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive solutions for your international business needs",
+    "companyFormation": {
+      "title": "Company Formation",
+      "description": "Expert guidance for establishing your business in strategic jurisdictions"
+    },
+    "residencyBanking": {
+      "title": "Residency & Banking",
+      "description": "Streamlined solutions for international residency and banking requirements"
+    },
+    "complianceAdvisory": {
+      "title": "Compliance & Advisory",
+      "description": "Navigate regulatory requirements with confidence and expertise"
+    }
+  },
+  "realEstate": {
+    "title": "Real Estate Portfolio",
+    "subtitle": "Exclusive properties in prime locations",
+    "available": "Available",
+    "reserved": "Reserved",
+    "sold": "Sold",
+    "viewDetails": "View Details"
+  },
+  "about": {
+    "title": "About Axira Group",
+    "subtitle": "Your trusted partner in international advisory services"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Let's discuss your requirements",
+    "whatsapp": "WhatsApp",
+    "email": "Email"
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "getInTouch": "Get in Touch",
+    "viewAll": "View All"
+  },
+  "digitalCard": {
+    "scanToOpen": "Scan to open this card",
+    "actions": {
+      "downloadContact": "Download Contact",
+      "whatsapp": "WhatsApp",
+      "email": "Email",
+      "website": "Website"
+    }
+  }
+}

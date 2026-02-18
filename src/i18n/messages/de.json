@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "services": "Dienstleistungen",
+    "realEstate": "Immobilien",
+    "about": "Über uns",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "headline": "Erstklassige Beratungs- und Immobiliendienstleistungen",
+    "subheadline": "Navigieren Sie durch internationale Unternehmensgründung, Aufenthaltslösungen und exklusive Immobilienmöglichkeiten mit fachkundiger Beratung.",
+    "cta": "Loslegen",
+    "ctaSecondary": "Kontaktieren Sie uns"
+  },
+  "services": {
+    "title": "Unsere Dienstleistungen",
+    "subtitle": "Umfassende Lösungen für Ihre internationalen Geschäftsbedürfnisse",
+    "companyFormation": {
+      "title": "Unternehmensgründung",
+      "description": "Fachkundige Beratung zur Gründung Ihres Unternehmens in strategischen Jurisdiktionen"
+    },
+    "residencyBanking": {
+      "title": "Aufenthalt & Banking",
+      "description": "Optimierte Lösungen für internationale Aufenthalts- und Bankanforderungen"
+    },
+    "complianceAdvisory": {
+      "title": "Compliance & Beratung",
+      "description": "Navigieren Sie regulatorische Anforderungen mit Vertrauen und Expertise"
+    }
+  },
+  "realEstate": {
+    "title": "Immobilienportfolio",
+    "subtitle": "Exklusive Immobilien in besten Lagen",
+    "available": "Verfügbar",
+    "reserved": "Reserviert",
+    "sold": "Verkauft",
+    "viewDetails": "Details ansehen"
+  },
+  "about": {
+    "title": "Über Axira Group",
+    "subtitle": "Ihr vertrauenswürdiger Partner für internationale Beratungsdienstleistungen"
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Lassen Sie uns über Ihre Anforderungen sprechen",
+    "whatsapp": "WhatsApp",
+    "email": "E-Mail"
+  },
+  "common": {
+    "learnMore": "Mehr erfahren",
+    "getInTouch": "Kontakt aufnehmen",
+    "viewAll": "Alle anzeigen"
+  },
+  "digitalCard": {
+    "scanToOpen": "Scannen, um diese Karte zu öffnen",
+    "actions": {
+      "downloadContact": "Kontakt herunterladen",
+      "whatsapp": "WhatsApp",
+      "email": "E-Mail",
+      "website": "Website"
+    }
+  }
+}

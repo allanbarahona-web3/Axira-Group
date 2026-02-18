@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "realEstate": "Inmobiliaria",
+    "about": "Nosotros",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "headline": "Servicios Premium de Asesoría y Propiedades",
+    "subheadline": "Navegue la formación de negocios internacionales, soluciones de residencia y oportunidades inmobiliarias exclusivas con orientación experta.",
+    "cta": "Comenzar",
+    "ctaSecondary": "Contáctenos"
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "subtitle": "Soluciones integrales para sus necesidades empresariales internacionales",
+    "companyFormation": {
+      "title": "Formación de Empresas",
+      "description": "Orientación experta para establecer su negocio en jurisdicciones estratégicas"
+    },
+    "residencyBanking": {
+      "title": "Residencia y Banca",
+      "description": "Soluciones simplificadas para requisitos de residencia y banca internacional"
+    },
+    "complianceAdvisory": {
+      "title": "Cumplimiento y Asesoría",
+      "description": "Navegue los requisitos regulatorios con confianza y experiencia"
+    }
+  },
+  "realEstate": {
+    "title": "Cartera Inmobiliaria",
+    "subtitle": "Propiedades exclusivas en ubicaciones privilegiadas",
+    "available": "Disponible",
+    "reserved": "Reservado",
+    "sold": "Vendido",
+    "viewDetails": "Ver Detalles"
+  },
+  "about": {
+    "title": "Sobre Axira Group",
+    "subtitle": "Su socio de confianza en servicios de asesoría internacional"
+  },
+  "contact": {
+    "title": "Contáctenos",
+    "subtitle": "Hablemos de sus requisitos",
+    "whatsapp": "WhatsApp",
+    "email": "Correo"
+  },
+  "common": {
+    "learnMore": "Saber Más",
+    "getInTouch": "Póngase en Contacto",
+    "viewAll": "Ver Todo"
+  },
+  "digitalCard": {
+    "scanToOpen": "Escanea para abrir esta tarjeta",
+    "actions": {
+      "downloadContact": "Descargar Contacto",
+      "whatsapp": "WhatsApp",
+      "email": "Correo",
+      "website": "Sitio web"
+    }
+  }
+}

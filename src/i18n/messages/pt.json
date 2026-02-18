@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "home": "Início",
+    "services": "Serviços",
+    "realEstate": "Imobiliário",
+    "about": "Sobre",
+    "contact": "Contato"
+  },
+  "hero": {
+    "headline": "Serviços Premium de Consultoria e Propriedades",
+    "subheadline": "Navegue pela formação de negócios internacionais, soluções de residência e oportunidades imobiliárias exclusivas com orientação especializada.",
+    "cta": "Começar",
+    "ctaSecondary": "Entre em Contato"
+  },
+  "services": {
+    "title": "Nossos Serviços",
+    "subtitle": "Soluções abrangentes para suas necessidades empresariais internacionais",
+    "companyFormation": {
+      "title": "Formação de Empresas",
+      "description": "Orientação especializada para estabelecer seu negócio em jurisdições estratégicas"
+    },
+    "residencyBanking": {
+      "title": "Residência e Banking",
+      "description": "Soluções simplificadas para requisitos de residência e banking internacional"
+    },
+    "complianceAdvisory": {
+      "title": "Compliance e Consultoria",
+      "description": "Navegue pelos requisitos regulatórios com confiança e expertise"
+    }
+  },
+  "realEstate": {
+    "title": "Portfólio Imobiliário",
+    "subtitle": "Propriedades exclusivas em localizações privilegiadas",
+    "available": "Disponível",
+    "reserved": "Reservado",
+    "sold": "Vendido",
+    "viewDetails": "Ver Detalhes"
+  },
+  "about": {
+    "title": "Sobre o Axira Group",
+    "subtitle": "Seu parceiro de confiança em serviços de consultoria internacional"
+  },
+  "contact": {
+    "title": "Entre em Contato",
+    "subtitle": "Vamos discutir seus requisitos",
+    "whatsapp": "WhatsApp",
+    "email": "E-mail"
+  },
+  "common": {
+    "learnMore": "Saiba Mais",
+    "getInTouch": "Entre em Contato",
+    "viewAll": "Ver Todos"
+  },
+  "digitalCard": {
+    "scanToOpen": "Escaneie para abrir este cartão",
+    "actions": {
+      "downloadContact": "Baixar Contato",
+      "whatsapp": "WhatsApp",
+      "email": "E-mail",
+      "website": "Website"
+    }
+  }
+}
