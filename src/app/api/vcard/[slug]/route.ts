@@ -3,7 +3,7 @@ import { digitalCard } from "@/config/digitalCard";
 
 export function GET(
   _request: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: { slug: string } },
 ) {
   if (params.slug !== digitalCard.slug) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });

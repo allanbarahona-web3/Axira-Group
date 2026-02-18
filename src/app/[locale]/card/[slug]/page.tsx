@@ -25,10 +25,16 @@ export default function DigitalCardPage({
     <section className="bg-neutral-50 py-10 px-4 sm:px-6">
       <div className="max-w-md mx-auto bg-white border border-neutral-200 rounded-2xl shadow-sm p-6 sm:p-8">
         <div className="text-center">
-          <p className="text-sm font-medium text-accent mb-2">{digitalCard.company}</p>
+          <p className="text-sm font-medium text-accent mb-2">
+            {digitalCard.company}
+          </p>
           <h1 className="text-3xl leading-tight">{digitalCard.fullName}</h1>
           <p className="mt-2 text-base text-neutral-700">{digitalCard.title}</p>
-          {digitalCard.location ? <p className="mt-1 text-sm text-neutral-500">{digitalCard.location}</p> : null}
+          {digitalCard.location ? (
+            <p className="mt-1 text-sm text-neutral-500">
+              {digitalCard.location}
+            </p>
+          ) : null}
         </div>
 
         <div className="mt-8 grid gap-3">
@@ -41,7 +47,10 @@ export default function DigitalCardPage({
             {translate(messages, "digitalCard.actions.whatsapp")}
           </a>
 
-          <a href={`mailto:${digitalCard.email}`} className="btn-outline w-full text-base">
+          <a
+            href={`mailto:${digitalCard.email}`}
+            className="btn-outline w-full text-base"
+          >
             {translate(messages, "digitalCard.actions.email")}
           </a>
 
@@ -54,7 +63,10 @@ export default function DigitalCardPage({
             {translate(messages, "digitalCard.actions.website")}
           </a>
 
-          <Link href={`/api/vcard/${digitalCard.slug}`} className="btn-accent w-full text-base">
+          <Link
+            href={`/api/vcard/${digitalCard.slug}`}
+            className="btn-accent w-full text-base"
+          >
             {translate(messages, "digitalCard.actions.downloadContact")}
           </Link>
         </div>
