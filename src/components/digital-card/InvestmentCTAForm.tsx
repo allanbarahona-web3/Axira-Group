@@ -78,6 +78,7 @@ export default function InvestmentCTAForm({
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const whatsappNumber = useMemo(
     () => normalizePhoneNumber(whatsappE164),
@@ -139,118 +140,147 @@ export default function InvestmentCTAForm({
   return (
     <section className="mt-8 border-t border-neutral-200 pt-6">
       <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-4 sm:p-5">
-        <h2 className="text-xl sm:text-2xl mb-2">{headline}</h2>
-        <p className="text-sm sm:text-base mb-5">{subheadline}</p>
-
-        <form className="grid gap-3" onSubmit={handleSubmit} noValidate>
-          <div>
-            <label className="block text-sm font-medium text-neutral-700 mb-1">
-              {labels.fullName}
-            </label>
-            <input
-              type="text"
-              value={formData.fullName}
-              onChange={(event) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  fullName: event.target.value,
-                }))
-              }
-              className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
-              required
-            />
-            {errors.fullName ? (
-              <p className="mt-1 text-xs text-red-600">{errors.fullName}</p>
-            ) : null}
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-neutral-700 mb-1">
-              {labels.email}
-            </label>
-            <input
-              type="email"
-              value={formData.email}
-              onChange={(event) =>
-                setFormData((prev) => ({ ...prev, email: event.target.value }))
-              }
-              className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
-              required
-            />
-            {errors.email ? (
-              <p className="mt-1 text-xs text-red-600">{errors.email}</p>
-            ) : null}
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-neutral-700 mb-1">
-              {labels.budget}
-            </label>
-            <select
-              value={formData.budget}
-              onChange={(event) =>
-                setFormData((prev) => ({ ...prev, budget: event.target.value }))
-              }
-              className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
-            >
-              <option value="">{labels.budgetPlaceholder}</option>
-              {budgetOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-neutral-700 mb-1">
-              {labels.goal}
-            </label>
-            <select
-              value={formData.goal}
-              onChange={(event) =>
-                setFormData((prev) => ({ ...prev, goal: event.target.value }))
-              }
-              className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
-            >
-              <option value="">{labels.goalPlaceholder}</option>
-              {goalOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-neutral-700 mb-1">
-              {labels.notes}
-            </label>
-            <textarea
-              value={formData.notes}
-              onChange={(event) =>
-                setFormData((prev) => ({ ...prev, notes: event.target.value }))
-              }
-              rows={4}
-              className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="btn-primary w-full mt-1"
-            disabled={isSubmitting}
-          >
-            {labels.submit}
-          </button>
-        </form>
-
-        <a
-          href="/en/real-estate"
-          className="btn-outline w-full mt-3 text-sm sm:text-base"
+        <button
+          type="button"
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-left"
+          aria-expanded={isOpen}
         >
-          {labels.viewProperties}
-        </a>
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="text-lg sm:text-xl">{headline}</h2>
+            <span className="text-primary text-lg leading-none">
+              {isOpen ? "−" : "+"}
+            </span>
+          </div>
+        </button>
+
+        {isOpen ? (
+          <>
+            <p className="text-sm sm:text-base mt-4 mb-5">{subheadline}</p>
+
+            <form className="grid gap-3" onSubmit={handleSubmit} noValidate>
+              <div>
+                <label className="block text-sm font-medium text-neutral-700 mb-1">
+                  {labels.fullName}
+                </label>
+                <input
+                  type="text"
+                  value={formData.fullName}
+                  onChange={(event) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      fullName: event.target.value,
+                    }))
+                  }
+                  className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                  required
+                />
+                {errors.fullName ? (
+                  <p className="mt-1 text-xs text-red-600">{errors.fullName}</p>
+                ) : null}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-neutral-700 mb-1">
+                  {labels.email}
+                </label>
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(event) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      email: event.target.value,
+                    }))
+                  }
+                  className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                  required
+                />
+                {errors.email ? (
+                  <p className="mt-1 text-xs text-red-600">{errors.email}</p>
+                ) : null}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-neutral-700 mb-1">
+                  {labels.budget}
+                </label>
+                <select
+                  value={formData.budget}
+                  onChange={(event) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      budget: event.target.value,
+                    }))
+                  }
+                  className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                >
+                  <option value="">{labels.budgetPlaceholder}</option>
+                  {budgetOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-neutral-700 mb-1">
+                  {labels.goal}
+                </label>
+                <select
+                  value={formData.goal}
+                  onChange={(event) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      goal: event.target.value,
+                    }))
+                  }
+                  className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                >
+                  <option value="">{labels.goalPlaceholder}</option>
+                  {goalOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-neutral-700 mb-1">
+                  {labels.notes}
+                </label>
+                <textarea
+                  value={formData.notes}
+                  onChange={(event) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      notes: event.target.value,
+                    }))
+                  }
+                  rows={4}
+                  className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="btn-primary w-full mt-1"
+                disabled={isSubmitting}
+              >
+                {labels.submit}
+              </button>
+            </form>
+
+            <a
+              href="/en/real-estate"
+              className="btn-outline w-full mt-3 text-sm sm:text-base"
+            >
+              {labels.viewProperties}
+            </a>
+          </>
+        ) : null}
       </div>
     </section>
   );

@@ -5,6 +5,7 @@ import { digitalCard } from "@/config/digitalCard";
 import { getMessages, translate } from "@/i18n/utils";
 import { type Locale } from "@/config/site";
 import InvestmentCTAForm from "@/components/digital-card/InvestmentCTAForm";
+import SocialButtons from "@/components/digital-card/SocialButtons";
 
 function normalizeHttpsBaseUrl(url: string): string {
   const trimmedUrl = url.trim().replace(/\/+$/, "");
@@ -35,6 +36,22 @@ function getSafeHttpUrl(url: string | null | undefined): string | null {
   }
 }
 
+function getUrlOrigin(url: string | null | undefined): string | null {
+  if (!url) {
+    return null;
+  }
+
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol === "https:" || parsed.protocol === "http:") {
+      return `${parsed.protocol}//${parsed.host}`;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 export default function DigitalCardPage({
   params,
 }: {
@@ -51,7 +68,9 @@ export default function DigitalCardPage({
   let baseUrl = "";
 
   if (isProduction) {
-    baseUrl = normalizeHttpsBaseUrl(siteUrlFromEnv);
+    baseUrl = normalizeHttpsBaseUrl(
+      siteUrlFromEnv || getUrlOrigin(digitalCard.website) || "",
+    );
   } else {
     if (siteUrlFromEnv) {
       baseUrl = normalizeHttpsBaseUrl(siteUrlFromEnv);
@@ -157,81 +176,14 @@ export default function DigitalCardPage({
             </a>
           ) : null}
 
-          <div className="border border-neutral-200 rounded-xl p-3 sm:p-4 bg-neutral-50">
-            <p className="text-sm font-semibold text-primary mb-3">
-              {translate(messages, "digitalCard.social.title")}
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-              {safeSocialUrls.tiktok ? (
-                <a
-                  href={safeSocialUrls.tiktok}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="rounded-lg px-3 py-2 text-sm font-semibold text-white text-center bg-[#000000]"
-                >
-                  TikTok
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  disabled
-                  aria-disabled="true"
-                  className="rounded-lg px-3 py-2 text-sm font-semibold text-white text-center bg-[#000000] opacity-75 cursor-not-allowed"
-                >
-                  TikTok
-                  <span className="ml-2 inline-flex rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-medium">
-                    {translate(messages, "digitalCard.social.comingSoon")}
-                  </span>
-                </button>
-              )}
-
-              {safeSocialUrls.instagram ? (
-                <a
-                  href={safeSocialUrls.instagram}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="rounded-lg px-3 py-2 text-sm font-semibold text-white text-center bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#515BD4]"
-                >
-                  Instagram
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  disabled
-                  aria-disabled="true"
-                  className="rounded-lg px-3 py-2 text-sm font-semibold text-white text-center bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#515BD4] opacity-75 cursor-not-allowed"
-                >
-                  Instagram
-                  <span className="ml-2 inline-flex rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-medium">
-                    {translate(messages, "digitalCard.social.comingSoon")}
-                  </span>
-                </button>
-              )}
-
-              {safeSocialUrls.facebook ? (
-                <a
-                  href={safeSocialUrls.facebook}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="rounded-lg px-3 py-2 text-sm font-semibold text-white text-center bg-[#1877F2] col-span-2 md:col-span-1"
-                >
-                  Facebook
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  disabled
-                  aria-disabled="true"
-                  className="rounded-lg px-3 py-2 text-sm font-semibold text-white text-center bg-[#1877F2] opacity-75 cursor-not-allowed col-span-2 md:col-span-1"
-                >
-                  Facebook
-                  <span className="ml-2 inline-flex rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-medium">
-                    {translate(messages, "digitalCard.social.comingSoon")}
-                  </span>
-                </button>
-              )}
-            </div>
-          </div>
+          <SocialButtons
+            title={translate(messages, "digitalCard.social.title")}
+            comingSoonLabel={translate(
+              messages,
+              "digitalCard.social.comingSoon",
+            )}
+            socials={safeSocialUrls}
+          />
 
           <a
             href={`/api/vcard/${digitalCard.slug}`}
@@ -245,11 +197,7 @@ export default function DigitalCardPage({
           <p className="text-sm text-center text-neutral-600 mb-4">
             {translate(messages, "digitalCard.scanToOpen")}
           </p>
-          {showQrFallback ? (
-            <p className="text-sm text-center text-neutral-500">
-              QR unavailable: missing NEXT_PUBLIC_SITE_URL in production.
-            </p>
-          ) : (
+          {showQrFallback ? null : (
             <div className="mx-auto w-fit rounded-xl border border-neutral-200 bg-white p-3">
               <QRCode value={cardUrl} size={168} />
             </div>
