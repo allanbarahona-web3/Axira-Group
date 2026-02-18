@@ -80,16 +80,6 @@ export default function DigitalCardPage({
           >
             {translate(messages, "digitalCard.actions.downloadContact")}
           </a>
-
-          <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-4 text-sm text-neutral-700">
-            <p className="font-medium text-neutral-800 mb-2">
-              {translate(messages, "digitalCard.saveInfoTitle")}
-            </p>
-            <p>{digitalCard.fullName}</p>
-            <p>{digitalCard.whatsappE164}</p>
-            <p>{digitalCard.email}</p>
-            <p>{digitalCard.website}</p>
-          </div>
         </div>
 
         <div className="mt-8 border-t border-neutral-200 pt-6">
