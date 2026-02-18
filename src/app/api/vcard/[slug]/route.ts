@@ -27,7 +27,7 @@ export function GET(
   return new NextResponse(vcard, {
     status: 200,
     headers: {
-      "Content-Type": "text/vcard; charset=utf-8",
+      "Content-Type": "text/x-vcard; charset=utf-8",
       "Content-Disposition": 'attachment; filename="Erick-Monge-Gonzalez.vcf"',
       "Cache-Control": "no-store",
     },
