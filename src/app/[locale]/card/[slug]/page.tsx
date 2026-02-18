@@ -1,5 +1,5 @@
-import Link from "next/link";
 import QRCode from "react-qr-code";
+import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { digitalCard } from "@/config/digitalCard";
 import { getMessages, translate } from "@/i18n/utils";
@@ -15,8 +15,19 @@ export default function DigitalCardPage({
   }
 
   const messages = getMessages(params.locale);
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-  const normalizedBaseUrl = baseUrl.replace(/\/+$/, "");
+  const requestHeaders = headers();
+  const forwardedHost = requestHeaders.get("x-forwarded-host");
+  const host = forwardedHost ?? requestHeaders.get("host");
+  const forwardedProto = requestHeaders.get("x-forwarded-proto");
+  const protocol =
+    forwardedProto ?? (host?.includes("localhost") ? "http" : "https");
+  const runtimeBaseUrl = host ? `${protocol}://${host}` : undefined;
+  const fallbackBaseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const normalizedBaseUrl = (runtimeBaseUrl ?? fallbackBaseUrl).replace(
+    /\/+$/,
+    "",
+  );
   const cardUrl = `${normalizedBaseUrl}/en/card/${digitalCard.slug}`;
   const whatsappNumber = digitalCard.whatsappE164.replace(/\D/g, "");
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(digitalCard.message)}`;
@@ -63,12 +74,13 @@ export default function DigitalCardPage({
             {translate(messages, "digitalCard.actions.website")}
           </a>
 
-          <Link
+          <a
             href={`/api/vcard/${digitalCard.slug}`}
             className="btn-accent w-full text-base"
+            download="Erick-Monge-Gonzalez.vcf"
           >
             {translate(messages, "digitalCard.actions.downloadContact")}
-          </Link>
+          </a>
         </div>
 
         <div className="mt-8 border-t border-neutral-200 pt-6">
