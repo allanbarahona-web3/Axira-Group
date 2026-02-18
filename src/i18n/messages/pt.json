@@ -54,6 +54,28 @@
   "digitalCard": {
     "scanToOpen": "Escaneie para abrir este cartão",
     "saveInfoTitle": "Este contato será salvo no seu telefone:",
+    "social": {
+      "title": "Social",
+      "comingSoon": "Em breve"
+    },
+    "cta": {
+      "form": {
+        "fullName": "Nome completo",
+        "email": "E-mail",
+        "budget": "Faixa de orçamento",
+        "goal": "Objetivo",
+        "notes": "Notas",
+        "submit": "Enviar via WhatsApp",
+        "viewProperties": "Ver propriedades",
+        "budgetPlaceholder": "Selecione a faixa de orçamento",
+        "goalPlaceholder": "Selecione o objetivo"
+      },
+      "validation": {
+        "requiredName": "Nome completo é obrigatório",
+        "requiredEmail": "E-mail é obrigatório",
+        "invalidEmail": "Informe um e-mail válido"
+      }
+    },
     "actions": {
       "downloadContact": "Salvar contato",
       "whatsapp": "WhatsApp",

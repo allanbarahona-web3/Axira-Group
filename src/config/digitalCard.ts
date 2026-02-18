@@ -8,4 +8,17 @@ export const digitalCard = {
   website: "https://axira-group.vercel.app/en",
   location: "Dubai, UAE",
   message: "Hi Erick, I found your contact via your business card.",
+  socials: {
+    tiktok: null,
+    instagram: null,
+    facebook: null,
+  },
+  cta: {
+    enabled: true,
+    headline: "Looking to invest in Dubai real estate?",
+    subheadline:
+      "Share your budget and goals and I’ll send curated investment options.",
+    defaultMessage:
+      "Hi Erick, I’m interested in investment opportunities in Dubai.",
+  },
 } as const;

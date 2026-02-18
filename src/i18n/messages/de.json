@@ -54,6 +54,28 @@
   "digitalCard": {
     "scanToOpen": "Scannen, um diese Karte zu öffnen",
     "saveInfoTitle": "Dieser Kontakt wird auf Ihrem Telefon gespeichert:",
+    "social": {
+      "title": "Social",
+      "comingSoon": "Demnächst"
+    },
+    "cta": {
+      "form": {
+        "fullName": "Vollständiger Name",
+        "email": "E-Mail",
+        "budget": "Budgetbereich",
+        "goal": "Ziel",
+        "notes": "Notizen",
+        "submit": "Per WhatsApp senden",
+        "viewProperties": "Immobilien ansehen",
+        "budgetPlaceholder": "Budgetbereich auswählen",
+        "goalPlaceholder": "Ziel auswählen"
+      },
+      "validation": {
+        "requiredName": "Vollständiger Name ist erforderlich",
+        "requiredEmail": "E-Mail ist erforderlich",
+        "invalidEmail": "Bitte geben Sie eine gültige E-Mail ein"
+      }
+    },
     "actions": {
       "downloadContact": "Kontakt speichern",
       "whatsapp": "WhatsApp",

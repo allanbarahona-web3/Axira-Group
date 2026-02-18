@@ -54,6 +54,28 @@
   "digitalCard": {
     "scanToOpen": "Scan to open this card",
     "saveInfoTitle": "This contact will be saved to your phone:",
+    "social": {
+      "title": "Social",
+      "comingSoon": "Coming soon"
+    },
+    "cta": {
+      "form": {
+        "fullName": "Full name",
+        "email": "Email",
+        "budget": "Budget range",
+        "goal": "Goal",
+        "notes": "Notes",
+        "submit": "Send via WhatsApp",
+        "viewProperties": "View Properties",
+        "budgetPlaceholder": "Select budget range",
+        "goalPlaceholder": "Select goal"
+      },
+      "validation": {
+        "requiredName": "Full name is required",
+        "requiredEmail": "Email is required",
+        "invalidEmail": "Please enter a valid email"
+      }
+    },
     "actions": {
       "downloadContact": "Save Contact",
       "whatsapp": "WhatsApp",
