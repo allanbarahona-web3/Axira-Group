@@ -7,10 +7,16 @@
     "contact": "Contact"
   },
   "hero": {
-    "headline": "Premier Advisory & Property Services",
-    "subheadline": "Navigate international business formation, residency solutions, and exclusive real estate opportunities with expert guidance.",
-    "cta": "Get Started",
-    "ctaSecondary": "Contact Us"
+    "headline": "Strategic Business & Property Advisory in Dubai",
+    "subheadline": "Expand. Relocate. Invest with Confidence.",
+    "badge": "Serving Continental America | UAE Market Experts",
+    "cta": "Book Consultation",
+    "ctaSecondary": "Explore Properties",
+    "metrics": {
+      "yearsExperience": "Years Experience",
+      "clientsServed": "Clients Served",
+      "countries": "Countries"
+    }
   },
   "services": {
     "title": "Our Services",

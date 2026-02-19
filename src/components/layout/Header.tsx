@@ -4,8 +4,9 @@ import Link from "next/link";
 import { type Locale, siteConfig } from "@/config/site";
 import { translate } from "@/i18n/utils";
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { digitalCard } from "@/config/digitalCard";
+import { usePathname } from "next/navigation";
 
 interface HeaderProps {
   locale: Locale;
@@ -66,14 +67,64 @@ function FacebookIcon() {
 
 export default function Header({ locale, messages }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  const normalizedPathname = (pathname || "").replace(/\/+$/, "") || "/";
+  const isHomeRoute =
+    normalizedPathname === "/" ||
+    normalizedPathname === `/${locale}`;
+  const isTransparent = isHomeRoute && !scrolled && !mobileMenuOpen;
+
+  useEffect(() => {
+    if (!isHomeRoute) {
+      setScrolled(true);
+      return;
+    }
+
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHomeRoute]);
+
   const socials = {
     tiktok: getSafeHttpUrl(digitalCard.socials.tiktok),
     instagram: getSafeHttpUrl(digitalCard.socials.instagram),
     facebook: getSafeHttpUrl(digitalCard.socials.facebook),
   };
 
+  const linkTextClass = isTransparent
+    ? "text-white hover:text-white"
+    : "text-neutral-700 hover:text-primary";
+
+  const brandTitleClass = isTransparent
+    ? "text-white group-hover:text-white/90"
+    : "text-primary group-hover:text-primary-dark";
+
+  const socialActiveClass = isTransparent
+    ? "text-white hover:text-white"
+    : "text-neutral-700 hover:text-primary-dark";
+
+  const socialInactiveClass = isTransparent
+    ? "text-white/75 bg-white/15"
+    : "text-neutral-600 bg-neutral-100";
+
+  const menuButtonClass = isTransparent
+    ? "text-white hover:text-white"
+    : "text-neutral-700 hover:text-primary";
+
   return (
-    <header className="bg-white border-b border-neutral-200 sticky top-0 z-50 backdrop-blur-sm bg-white/95">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isTransparent
+          ? "bg-gradient-to-r from-[#0a1b38]/96 via-[#10284f]/92 to-[#0d2346]/94 border-b border-white/15 backdrop-blur-md"
+          : "bg-white/95 border-b border-neutral-200 backdrop-blur-sm"
+      }`}
+    >
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Brand */}
@@ -82,10 +133,16 @@ export default function Header({ locale, messages }: HeaderProps) {
             className="flex items-center space-x-3 group"
           >
             <div className="flex flex-col">
-              <span className="text-2xl font-bold text-primary group-hover:text-primary-dark transition-colors">
+              <span
+                className={`text-2xl font-bold transition-colors ${brandTitleClass}`}
+              >
                 {siteConfig.brandName}
               </span>
-              <span className="text-xs text-accent tracking-wide uppercase">
+              <span
+                className={`text-xs tracking-wide uppercase ${
+                  isTransparent ? "text-accent-light" : "text-accent"
+                }`}
+              >
                 {siteConfig.brandTagline}
               </span>
             </div>
@@ -97,7 +154,7 @@ export default function Header({ locale, messages }: HeaderProps) {
               <Link
                 key={item.key}
                 href={`/${locale}${item.href}`}
-                className="text-neutral-700 hover:text-primary font-medium transition-colors"
+                className={`font-medium transition-colors ${linkTextClass}`}
               >
                 {translate(messages, `nav.${item.key}`)}
               </Link>
@@ -112,14 +169,14 @@ export default function Header({ locale, messages }: HeaderProps) {
                   href={socials.tiktok}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-full text-neutral-700 hover:text-primary-dark transition-colors"
+                  className={`p-2.5 rounded-full transition-colors ${socialActiveClass}`}
                   aria-label="TikTok"
                 >
                   <TikTokIcon />
                 </a>
               ) : (
                 <span
-                  className="p-2.5 rounded-full text-neutral-600 bg-neutral-100"
+                  className={`p-2.5 rounded-full ${socialInactiveClass}`}
                   aria-label="TikTok unavailable"
                 >
                   <TikTokIcon />
@@ -130,14 +187,14 @@ export default function Header({ locale, messages }: HeaderProps) {
                   href={socials.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-full text-neutral-700 hover:text-primary-dark transition-colors"
+                  className={`p-2.5 rounded-full transition-colors ${socialActiveClass}`}
                   aria-label="Instagram"
                 >
                   <InstagramIcon />
                 </a>
               ) : (
                 <span
-                  className="p-2.5 rounded-full text-neutral-600 bg-neutral-100"
+                  className={`p-2.5 rounded-full ${socialInactiveClass}`}
                   aria-label="Instagram unavailable"
                 >
                   <InstagramIcon />
@@ -148,14 +205,14 @@ export default function Header({ locale, messages }: HeaderProps) {
                   href={socials.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-full text-neutral-700 hover:text-primary-dark transition-colors"
+                  className={`p-2.5 rounded-full transition-colors ${socialActiveClass}`}
                   aria-label="Facebook"
                 >
                   <FacebookIcon />
                 </a>
               ) : (
                 <span
-                  className="p-2.5 rounded-full text-neutral-600 bg-neutral-100"
+                  className={`p-2.5 rounded-full ${socialInactiveClass}`}
                   aria-label="Facebook unavailable"
                 >
                   <FacebookIcon />
@@ -165,7 +222,7 @@ export default function Header({ locale, messages }: HeaderProps) {
             <LanguageSwitcher currentLocale={locale} />
 
             <button
-              className="lg:hidden p-2 text-neutral-700 hover:text-primary"
+              className={`lg:hidden p-2 transition-colors ${menuButtonClass}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -197,7 +254,7 @@ export default function Header({ locale, messages }: HeaderProps) {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <nav className="lg:hidden py-6 border-t border-neutral-200">
+          <nav className="lg:hidden py-6 border-t border-neutral-200 bg-white/95 backdrop-blur-sm">
             <div className="flex flex-col space-y-4">
               {siteConfig.navigation.map((item) => (
                 <Link

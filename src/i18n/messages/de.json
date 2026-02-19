@@ -7,10 +7,16 @@
     "contact": "Kontakt"
   },
   "hero": {
-    "headline": "Erstklassige Beratungs- und Immobiliendienstleistungen",
-    "subheadline": "Navigieren Sie durch internationale Unternehmensgründung, Aufenthaltslösungen und exklusive Immobilienmöglichkeiten mit fachkundiger Beratung.",
-    "cta": "Loslegen",
-    "ctaSecondary": "Kontaktieren Sie uns"
+    "headline": "Strategische Unternehmens- und Immobilienberatung in Dubai",
+    "subheadline": "Expandieren. Umziehen. Mit Vertrauen investieren.",
+    "badge": "Betreuung für Kontinentalamerika | UAE-Marktexperten",
+    "cta": "Beratung buchen",
+    "ctaSecondary": "Immobilien entdecken",
+    "metrics": {
+      "yearsExperience": "Jahre Erfahrung",
+      "clientsServed": "Betreute Kunden",
+      "countries": "Länder"
+    }
   },
   "services": {
     "title": "Unsere Dienstleistungen",

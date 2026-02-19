@@ -7,10 +7,16 @@
     "contact": "Contato"
   },
   "hero": {
-    "headline": "Serviços Premium de Consultoria e Propriedades",
-    "subheadline": "Navegue pela formação de negócios internacionais, soluções de residência e oportunidades imobiliárias exclusivas com orientação especializada.",
-    "cta": "Começar",
-    "ctaSecondary": "Entre em Contato"
+    "headline": "Consultoria Estratégica de Negócios e Imobiliário em Dubai",
+    "subheadline": "Expandir. Recolocar. Investir com confiança.",
+    "badge": "Atendendo a América Continental | Especialistas no mercado dos EAU",
+    "cta": "Agendar consulta",
+    "ctaSecondary": "Explorar propriedades",
+    "metrics": {
+      "yearsExperience": "Anos de experiência",
+      "clientsServed": "Clientes atendidos",
+      "countries": "Países"
+    }
   },
   "services": {
     "title": "Nossos Serviços",

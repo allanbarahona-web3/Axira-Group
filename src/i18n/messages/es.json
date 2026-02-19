@@ -7,10 +7,16 @@
     "contact": "Contacto"
   },
   "hero": {
-    "headline": "Servicios Premium de Asesoría y Propiedades",
-    "subheadline": "Navegue la formación de negocios internacionales, soluciones de residencia y oportunidades inmobiliarias exclusivas con orientación experta.",
-    "cta": "Comenzar",
-    "ctaSecondary": "Contáctenos"
+    "headline": "Asesoría Estratégica de Negocios e Inmobiliaria en Dubái",
+    "subheadline": "Expande. Reubícate. Invierte con confianza.",
+    "badge": "Atendiendo América Continental | Expertos del Mercado EAU",
+    "cta": "Reservar consulta",
+    "ctaSecondary": "Explorar propiedades",
+    "metrics": {
+      "yearsExperience": "Años de experiencia",
+      "clientsServed": "Clientes atendidos",
+      "countries": "Países"
+    }
   },
   "services": {
     "title": "Nuestros Servicios",
