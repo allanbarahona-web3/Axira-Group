@@ -4,7 +4,7 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 /**
  * Sanity CMS Client Configuration
- * 
+ *
  * Environment variables required:
  * - NEXT_PUBLIC_SANITY_PROJECT_ID
  * - NEXT_PUBLIC_SANITY_DATASET
@@ -28,25 +28,30 @@ let _client: SanityClient | null = null;
  */
 export function getSanityClient(): SanityClient {
   if (!isSanityConfigured()) {
-    throw new Error("Sanity client is not configured. Please set NEXT_PUBLIC_SANITY_PROJECT_ID and NEXT_PUBLIC_SANITY_DATASET environment variables.");
+    throw new Error(
+      "Sanity client is not configured. Please set NEXT_PUBLIC_SANITY_PROJECT_ID and NEXT_PUBLIC_SANITY_DATASET environment variables.",
+    );
   }
-  
+
   if (!_client) {
     _client = createClient({
       projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
       dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
       apiVersion: "2024-01-01", // Use current date in YYYY-MM-DD format
-      useCdn: true, // Enable CDN for faster response times
+      useCdn: false, // Disable CDN so updates are reflected quickly
       token: process.env.SANITY_API_READ_TOKEN, // Optional, only needed for private datasets
     });
   }
-  
+
   return _client;
 }
 
 // Export client getter (not the client instance)
 export const sanityClient = {
-  fetch: async <T = any>(query: string, params?: Record<string, any>): Promise<T> => {
+  fetch: async <T = any>(
+    query: string,
+    params?: Record<string, any>,
+  ): Promise<T> => {
     const client = getSanityClient();
     if (params) {
       return client.fetch<T>(query, params);
