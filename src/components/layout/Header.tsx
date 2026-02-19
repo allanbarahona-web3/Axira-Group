@@ -67,28 +67,47 @@ function FacebookIcon() {
 
 export default function Header({ locale, messages }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [onHero, setOnHero] = useState(false);
   const pathname = usePathname();
 
   const normalizedPathname = (pathname || "").replace(/\/+$/, "") || "/";
   const isHomeRoute =
-    normalizedPathname === "/" ||
-    normalizedPathname === `/${locale}`;
-  const isTransparent = isHomeRoute && !scrolled && !mobileMenuOpen;
+    normalizedPathname === "/" || normalizedPathname === `/${locale}`;
+  const isHeroTheme = isHomeRoute && onHero && !mobileMenuOpen;
 
   useEffect(() => {
     if (!isHomeRoute) {
-      setScrolled(true);
+      setOnHero(false);
       return;
     }
 
-    const onScroll = () => {
-      setScrolled(window.scrollY > 20);
+    const updateHeaderZone = () => {
+      const heroElement = document.getElementById("home-hero");
+
+      if (!heroElement) {
+        setOnHero(false);
+        return;
+      }
+
+      const scrollY = window.scrollY;
+      const isAtTop = scrollY <= 8;
+      const heroRect = heroElement.getBoundingClientRect();
+      const heroTop = scrollY + heroRect.top;
+      const heroBottom = heroTop + heroRect.height;
+      const headerLine = scrollY + 80;
+      const isInsideHero = headerLine >= heroTop && headerLine < heroBottom;
+
+      setOnHero(!isAtTop && isInsideHero);
     };
 
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    updateHeaderZone();
+    window.addEventListener("scroll", updateHeaderZone, { passive: true });
+    window.addEventListener("resize", updateHeaderZone);
+
+    return () => {
+      window.removeEventListener("scroll", updateHeaderZone);
+      window.removeEventListener("resize", updateHeaderZone);
+    };
   }, [isHomeRoute]);
 
   const socials = {
@@ -97,32 +116,32 @@ export default function Header({ locale, messages }: HeaderProps) {
     facebook: getSafeHttpUrl(digitalCard.socials.facebook),
   };
 
-  const linkTextClass = isTransparent
+  const linkTextClass = isHeroTheme
     ? "text-white hover:text-white"
     : "text-neutral-700 hover:text-primary";
 
-  const brandTitleClass = isTransparent
+  const brandTitleClass = isHeroTheme
     ? "text-white group-hover:text-white/90"
     : "text-primary group-hover:text-primary-dark";
 
-  const socialActiveClass = isTransparent
+  const socialActiveClass = isHeroTheme
     ? "text-white hover:text-white"
     : "text-neutral-700 hover:text-primary-dark";
 
-  const socialInactiveClass = isTransparent
+  const socialInactiveClass = isHeroTheme
     ? "text-white/75 bg-white/15"
     : "text-neutral-600 bg-neutral-100";
 
-  const menuButtonClass = isTransparent
+  const menuButtonClass = isHeroTheme
     ? "text-white hover:text-white"
     : "text-neutral-700 hover:text-primary";
 
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
-        isTransparent
+        isHeroTheme
           ? "bg-gradient-to-r from-[#0a1b38]/96 via-[#10284f]/92 to-[#0d2346]/94 border-b border-white/15 backdrop-blur-md"
-          : "bg-white/95 border-b border-neutral-200 backdrop-blur-sm"
+          : "bg-white/76 border-b border-neutral-200/80 backdrop-blur-[2px]"
       }`}
     >
       <div className="container-custom">
@@ -140,7 +159,7 @@ export default function Header({ locale, messages }: HeaderProps) {
               </span>
               <span
                 className={`text-xs tracking-wide uppercase ${
-                  isTransparent ? "text-accent-light" : "text-accent"
+                  isHeroTheme ? "text-accent-light" : "text-accent"
                 }`}
               >
                 {siteConfig.brandTagline}
@@ -219,7 +238,10 @@ export default function Header({ locale, messages }: HeaderProps) {
                 </span>
               )}
             </div>
-            <LanguageSwitcher currentLocale={locale} />
+            <LanguageSwitcher
+              currentLocale={locale}
+              variant={isHeroTheme ? "hero" : "default"}
+            />
 
             <button
               className={`lg:hidden p-2 transition-colors ${menuButtonClass}`}

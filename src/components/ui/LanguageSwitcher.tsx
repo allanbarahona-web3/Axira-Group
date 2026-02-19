@@ -6,6 +6,7 @@ import { useState } from "react";
 
 interface LanguageSwitcherProps {
   currentLocale: Locale;
+  variant?: "default" | "hero";
 }
 
 const localeNames: Record<Locale, string> = {
@@ -15,9 +16,17 @@ const localeNames: Record<Locale, string> = {
   pt: "PT",
 };
 
-export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
+export default function LanguageSwitcher({
+  currentLocale,
+  variant = "default",
+}: LanguageSwitcherProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
+  const triggerClassName =
+    variant === "hero"
+      ? "flex items-center space-x-1 px-3 py-2 text-sm font-medium text-white hover:text-white border border-white/35 rounded-lg hover:border-white/60 bg-white/10 hover:bg-white/15 transition-colors"
+      : "flex items-center space-x-1 px-3 py-2 text-sm font-medium text-neutral-700 hover:text-primary border border-neutral-300 rounded-lg hover:border-primary transition-colors";
   
   const switchLocale = (newLocale: Locale) => {
     // Remove current locale from pathname and add new locale
@@ -30,7 +39,7 @@ export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProp
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-1 px-3 py-2 text-sm font-medium text-neutral-700 hover:text-primary border border-neutral-300 rounded-lg hover:border-primary transition-colors"
+        className={triggerClassName}
         aria-label="Select language"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
