@@ -9,9 +9,9 @@ export const digitalCard = {
   location: "Dubai, UAE",
   message: "Hi Erick, I found your contact via your business card.",
   socials: {
-    tiktok: null,
-    instagram: null,
-    facebook: null,
+    tiktok: "https://www.tiktok.com/@barmentech",
+    instagram: "https://www.instagram.com/barmentech",
+    facebook: "https://www.facebook.com/barmentech",
   },
   cta: {
     enabled: true,
